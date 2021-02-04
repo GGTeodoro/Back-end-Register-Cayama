@@ -15,7 +15,7 @@ const newRegisterSeller = rescue(async (req, res, next) => {
 
   if (NewRegister.error) return next(NewRegister);
 
-  res.status(200).json();
+  res.status(200).json("Cadastrado com sucesso");
 });
 
 module.exports = {

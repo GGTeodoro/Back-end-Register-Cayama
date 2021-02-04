@@ -7,14 +7,22 @@ const allRegisterSeller = async () => {
   return register;
 };
 
+const registeredEmailSeller = async (email) => {
+  const db = await connection();
+  const register = await db.collection('influencer').find({ email }).toArray();
+
+  return register;
+};
+
 const newRegisterSeller = async (productObj) => {
   const db = await connection();
-  const newProduct = await db.collection('seller').insertOne(productObj);
+  await db.collection('seller').insertOne(productObj);
 
-  return newProduct.ops[0];
+  return "registrado";
 };
 
 module.exports = {
   allRegisterSeller,
+  registeredEmailSeller,
   newRegisterSeller,
 };
