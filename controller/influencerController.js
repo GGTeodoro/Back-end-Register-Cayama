@@ -8,10 +8,9 @@ const allRegisterInfluencer = rescue(async (_req, res) => {
 });
 
 const newRegisterInfluencer = rescue(async (req, res, next) => {
-  const { name, email, tel, url, actual, desire } = req.body;
-  const NewRegister = await influencerService.newRegisterInfluencer(
-    name, email, tel, url, actual, desire
-  );
+  const { name, email, tel, url } = req.body;
+
+  const NewRegister = await influencerService.newRegisterInfluencer(name, email, tel, url);
 
   if (NewRegister.error) return next(NewRegister);
 

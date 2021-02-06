@@ -8,10 +8,8 @@ const allRegisterSeller = rescue(async (_req, res) => {
 });
 
 const newRegisterSeller = rescue(async (req, res, next) => {
-  const { name, email, tel, url, actual, desire } = req.body;
-  const NewRegister = await sellerService.newRegisterSeller(
-    name, email, tel, url, actual, desire
-  );
+  const { name, email, tel, url } = req.body;
+  const NewRegister = await sellerService.newRegisterSeller(name, email, tel, url);
 
   if (NewRegister.error) return next(NewRegister);
 

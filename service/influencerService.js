@@ -1,3 +1,4 @@
+const { checkInfo } = require('../aux/dataTreatment');
 const { influencerModel } = require('../models');
 
 const allRegisterInfluencer = async () => {
@@ -6,18 +7,16 @@ const allRegisterInfluencer = async () => {
   return allRegister;
 }
 
-const newRegisterInfluencer = async (name, email, tel, url, actual, desire) => {
-  if (!name || !email || !tel || !url || !actual || !desire ) {
-    return { error: true, status: 404, message: 'Informação incompleta!' };
-  }
+const newRegisterInfluencer = async (name, email, tel, url) => {
+  const testInfo = await checkInfo(name, email, tel, url);
+
+  if (testInfo) return testInfo;
 
   const testEmail = await influencerModel.registeredEmailInfluencer(email);
 
-  if (testEmail) return { error: true, status: 404, message: 'E-mail já cadastrado!' };
-  
-  const register = await influencerModel.newRegisterInfluencer({
-    name, email, contact: tel, url, actual, desire,
-  });
+  if (testEmail.length > 0) return { error: true, status: 409, message: 'E-mail já cadastrado!' };
+
+  const register = await influencerModel.newRegisterInfluencer({ name, email, contact: tel, url });
 
   return register;
 };

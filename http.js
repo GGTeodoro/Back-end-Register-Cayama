@@ -7,6 +7,7 @@ module.exports = (express, routes, cors, bodyParser) => {
   app.use('/Logista', routes.sellerRoute);
 
   app.use((error, _req, res, _next) => {
+    console.log(error)
     const { message, status } = error;
     if (status < 500) {
       return res.status(status).json(message);
