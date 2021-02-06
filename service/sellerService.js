@@ -1,3 +1,4 @@
+const { checkInfo } = require('../aux/dataTreatment');
 const { sellerModel } = require('../models');
 
 const allRegisterSeller = async () => sellerModel.allRegisterSeller({});
@@ -9,7 +10,7 @@ const newRegisterSeller = async (name, email, tel, url) => {
 
   const testEmail = await sellerModel.registeredEmailSeller(email);
 
-  if (testEmail) return { error: true, status: 409, message: 'E-mail já cadastrado!' };
+  if (testEmail.length > 0) return { error: true, status: 409, message: 'E-mail já cadastrado!' };
 
   const register = await sellerModel.newRegisterSeller({ name, email, contact: tel, url });
 

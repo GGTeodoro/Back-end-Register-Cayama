@@ -4,7 +4,7 @@ module.exports = (express, routes, cors, bodyParser) => {
 
   app.use(cors());
   app.use('/Influencer', routes.influencerRoute);
-  app.use('/Logista', routes.sellerRoute);
+  app.use('/Lojista', routes.sellerRoute);
 
   app.use((error, _req, res, _next) => {
     console.log(error)
