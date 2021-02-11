@@ -15,6 +15,7 @@ const registeredEmailSeller = async (email) => {
 };
 
 const newRegisterSeller = async (productObj) => {
+  console.log(productObj)
   const db = await connection();
   await db.collection('seller').insertOne(productObj);
 
