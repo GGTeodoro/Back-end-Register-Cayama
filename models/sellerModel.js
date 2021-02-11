@@ -9,7 +9,7 @@ const allRegisterSeller = async () => {
 
 const registeredEmailSeller = async (email) => {
   const db = await connection();
-  const register = await db.collection('influencer').find({ email }).toArray();
+  const register = await db.collection('seller').find({ email }).toArray();
 
   return register;
 };

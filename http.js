@@ -2,9 +2,10 @@ module.exports = (express, routes, cors, bodyParser) => {
   const app = express();
   app.use(bodyParser.json());
 
-  app.use(cors());
-  app.use('/Influencer', routes.influencerRoute);
-  app.use('/Lojista', routes.sellerRoute);
+  // app.use(cors());
+  app.get('/', (req, res) => res.send('Cayama landing page'));
+  // app.use('/Influencer', routes.influencerRoute);
+  // app.use('/Lojista', routes.sellerRoute);
 
   app.use((error, _req, res, _next) => {
     console.log(error)
